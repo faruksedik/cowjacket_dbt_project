@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: int_customer_orders
+    description: >
+      Intermediate model that joins customers, orders, and order items
+      to create a customer–order level dataset.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: total_amount
+        tests:
+          - not_null
+
+  - name: int_customer_loyalty
+    description: >
+      Intermediate model combining customers with their loyalty point transactions.
+    columns:
+      - name: loyalty_id
+        tests:
+          - not_null
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: points_earned
+        tests:
+          - not_null
+version: 2
+
+models:
+  - name: int_customer_orders
+    description: >
+      Intermediate model that joins customers, orders, and order items
+      to create a customer–order level dataset.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: total_amount
+        tests:
+          - not_null
+
+  - name: int_customer_loyalty
+    description: >
+      Intermediate model combining customers with their loyalty point transactions.
+    columns:
+      - name: loyalty_id
+        tests:
+          - not_null
+
+      - name: customer_id
+        tests:
+          - not_null
+
+      - name: points_earned
+        tests:
+          - not_null
