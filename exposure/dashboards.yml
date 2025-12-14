@@ -1,0 +1,17 @@
+version: 2
+
+exposures:
+  - name: looker_sales_dashboard
+    type: dashboard
+    maturity: high
+    description: >
+      This Looker dashboard visualizes sales revenue, orders, and customer metrics.
+      It is powered by fact and dimension tables in dbt (fct_sales, dim_customers).
+
+    owner:
+      name: Analytics Team
+      email: faruksedik@gmail.com
+
+    depends_on:
+      - ref('fct_sales')
+      - ref('dim_customers')
