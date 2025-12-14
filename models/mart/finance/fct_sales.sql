@@ -1,7 +1,6 @@
 {{
   config(
     materialized = 'table',
-    schema = target.schema ~ '_marts',
     enabled = (target.name != 'dev')
   )
 }}
