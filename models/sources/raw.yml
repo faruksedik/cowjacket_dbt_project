@@ -15,14 +15,17 @@ sources:
             tests:
               - not_null
               - unique
+
           - name: full_name
             description: "Full name of the customer."
-            tests:
+            test: 
               - not_null
+
           - name: email
             description: "Customer email address (unique)."
             tests:
               - unique
+
           - name: join_date
             description: "Date when the customer created an account."
             tests:
@@ -36,14 +39,17 @@ sources:
             tests:
               - not_null
               - unique
+
           - name: product_name
             description: "Name of the product."
             tests:
               - not_null
+
           - name: category
             description: "Category of the product (e.g., Shoes, Jackets)."
             tests:
               - not_null
+
           - name: price
             description: "Unit price of the product."
             tests:
@@ -57,6 +63,7 @@ sources:
             tests:
               - not_null
               - unique
+
           - name: customer_id
             description: "Links to customers.customer_id."
             tests:
@@ -64,10 +71,12 @@ sources:
               - relationships:
                   to: source('raw_cowjacket', 'customers')
                   field: customer_id
+
           - name: order_date
             description: "Date the order was placed."
             tests:
               - not_null
+
           - name: total_amount
             description: "Total order amount."
             tests:
@@ -81,6 +90,7 @@ sources:
             tests:
               - not_null
               - unique
+
           - name: order_id
             description: "Links to orders.order_id."
             tests:
@@ -88,6 +98,7 @@ sources:
               - relationships:
                   to: source('raw_cowjacket', 'orders')
                   field: order_id
+
           - name: product_id
             description: "Links to products.product_id."
             tests:
@@ -95,10 +106,12 @@ sources:
               - relationships:
                   to: source('raw_cowjacket', 'products')
                   field: product_id
+
           - name: quantity
             description: "Number of units purchased."
             tests:
               - not_null
+
           - name: line_total
             description: "Total cost of this line item."
             tests:
@@ -112,6 +125,7 @@ sources:
             tests:
               - not_null
               - unique
+
           - name: customer_id
             description: "Links to customers.customer_id."
             tests:
@@ -119,14 +133,17 @@ sources:
               - relationships:
                   to: source('raw_cowjacket', 'customers')
                   field: customer_id
+
           - name: points_earned
             description: "Number of points earned in this transaction."
             tests:
               - not_null
+
           - name: transaction_date
             description: "Date when the loyalty points were earned."
             tests:
               - not_null
+              
           - name: source
             description: "Source of loyalty points (purchase, promo, etc)."
             tests:

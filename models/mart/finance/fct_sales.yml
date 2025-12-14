@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: fct_sales
+    description: >
+      Sales fact table at the order item grain, combining orders,
+      products, and revenue metrics for financial and performance analysis.
+    columns:
+      - name: order_id
+        description: Unique identifier for the order.
+        tests:
+          - not_null
+
+      - name: order_date
+        description: Date when the order was placed.
+
+      - name: customer_id
+        description: Identifier of the customer who placed the order.
+
+      - name: product_id
+        description: Identifier of the product sold.
+
+      - name: product_name
+        description: Name of the product sold.
+
+      - name: category
+        description: Product category.
+
+      - name: quantity
+        description: Number of units sold for the product.
+
+      - name: line_total
+        description: Revenue generated for this product line item.
+
+      - name: total_amount
+        description: Total order value across all items.

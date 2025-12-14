@@ -1,0 +1,160 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: >
+      Staging model for customers. This model standardizes customer fields
+      and applies basic data quality checks.
+
+    columns:
+      - name: customer_id
+        description: Primary key for customers.
+        tests:
+          - not_null
+          - unique
+
+      - name: full_name
+        description: Full name of the customer.
+        tests:
+          - not_null
+
+      - name: email
+        description: Customer email address.
+        tests:
+          - not_null
+          - unique
+
+      - name: join_date
+        description: Date the customer joined the platform.
+        tests:
+          - not_null
+
+
+  - name: stg_products
+    description: >
+      Staging model for products. Cleans and standardizes product attributes.
+
+    columns:
+      - name: product_id
+        description: Primary key for products.
+        tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: Name of the product.
+        tests:
+          - not_null
+
+      - name: category
+        description: Product category.
+        tests:
+          - not_null
+
+      - name: price
+        description: Unit price of the product in local currency.
+        tests:
+          - not_null
+
+
+  - name: stg_orders
+    description: >
+      Staging model for customer orders. Contains one row per order.
+
+    columns:
+      - name: order_id
+        description: Primary key for orders.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Foreign key referencing customers.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+
+      - name: order_date
+        description: Date the order was placed.
+        tests:
+          - not_null
+
+      - name: total_amount
+        description: Total monetary value of the order.
+        tests:
+          - not_null
+
+
+  - name: stg_order_items
+    description: >
+      Staging model for order line items. One row per product per order.
+
+    columns:
+      - name: order_item_id
+        description: Primary key for order items.
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        description: Foreign key referencing orders.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: order_id
+
+      - name: product_id
+        description: Foreign key referencing products.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_products')
+              field: product_id
+
+      - name: quantity
+        description: Number of units ordered.
+        tests:
+          - not_null
+
+      - name: line_total
+        description: Total price for the order line.
+        tests:
+          - not_null
+
+
+  - name: stg_loyalty_points
+    description: >
+      Staging model for customer loyalty points transactions.
+
+    columns:
+      - name: loyalty_id
+        description: Primary key for loyalty point transactions.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Foreign key referencing customers.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+
+      - name: points_earned
+        description: Number of loyalty points earned.
+        tests:
+          - not_null
+
+      - name: transaction_date
+        description: Date the loyalty transaction occurred.
+        tests:
+          - not_null
+
+      - name: points_source
+        description: Source of the loyalty points (e.g., Order, Promotion).
+        tests:
+          - not_null

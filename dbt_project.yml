@@ -2,7 +2,8 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+# name: 'my_new_project'
+name: 'cowjacket_dbt_project'
 version: '1.0.0'
 config-version: 2
 
@@ -35,8 +36,18 @@ clean-targets:         # directories to be removed by `dbt clean`
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 
+on-run-end:
+  - "{{ log_dbt_run_results(results) }}"
+
 models:
-  my_new_project:
-    # Applies to all files under models/example/
-    example:
+  cowjacket_dbt_project:
+
+    staging:
+      +materialized: view
+
+    intermediate:
+      +materialized: view
+
+    marts:
       +materialized: table
+      +schema: "{{ target.schema }}_marts"

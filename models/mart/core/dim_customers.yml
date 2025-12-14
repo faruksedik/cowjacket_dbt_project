@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: >
+      Customer dimension table containing one row per customer with
+      aggregated order and loyalty metrics for analytics and reporting.
+    columns:
+      - name: customer_id
+        description: Primary key for the customer.
+        tests:
+          - not_null
+          - unique
+
+      - name: full_name
+        description: Full name of the customer.
+
+      - name: email
+        description: Email address of the customer.
+
+      - name: join_date
+        description: Date the customer joined the platform.
+
+      - name: total_orders
+        description: Total number of orders placed by the customer.
+
+      - name: lifetime_spend
+        description: Total monetary value of all orders placed by the customer.
+
+      - name: total_loyalty_points
+        description: Total loyalty points earned by the customer.
