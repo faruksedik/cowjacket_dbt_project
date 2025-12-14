@@ -7,7 +7,7 @@ sources:
     schema: cowjacket_schema
 
     tables:
-      - name: customers
+      - name: customerss
         description: "Customer master data."
         columns:
           - name: customer_id
