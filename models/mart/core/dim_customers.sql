@@ -1,9 +1,9 @@
 {{
   config(
-    materialized = 'table',
     enabled = (target.name != 'dev')
   )
 }}
+
 
 with customers as (
 

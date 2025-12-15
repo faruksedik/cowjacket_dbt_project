@@ -1,6 +1,5 @@
 {{
   config(
-    materialized = 'table',
     enabled = (target.name != 'dev')
   )
 }}

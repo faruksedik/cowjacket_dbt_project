@@ -50,4 +50,4 @@ models:
 
     marts:
       +materialized: table
-      +schema: marts
+      +schema: "{{ target.schema }}_marts"
